@@ -20,7 +20,7 @@ const CategoryItem = ({ categories }) => {
                 <img
                   src={category.imageSrc}
                   alt={category.imageAlt}
-                  className="h-full w-full object-cover object-center"
+                  className="h-full w-full object-cover object-center hover:scale-110 ease-in duration-700"
                 />
               </div>
               <h3 className="mt-4 text-base font-semibold text-gray-900">
