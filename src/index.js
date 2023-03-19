@@ -5,6 +5,7 @@ import "./index.css";
 import App from "./App";
 import ErrorPage from "./components/error-page/ErrorPage";
 import Navigation from "./routes/navigation/Navigation";
+import SignIn from "./routes/sign-in/SignIn";
 import reportWebVitals from "./reportWebVitals";
 
 const router = createBrowserRouter([
@@ -16,6 +17,10 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <App />,
+      },
+      {
+        path: "/auth",
+        element: <SignIn />,
       },
     ],
   },
