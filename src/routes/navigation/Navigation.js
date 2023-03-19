@@ -5,7 +5,6 @@ import {
   ShoppingCartIcon,
   XMarkIcon,
 } from "@heroicons/react/24/outline";
-import SignIn from "../sign-in/SignIn";
 
 const classNames = (...classes) => {
   return classes.filter(Boolean).join(" ");
@@ -14,7 +13,7 @@ const classNames = (...classes) => {
 const Navigation = () => {
   return (
     <>
-      <Disclosure as="nav" className="bg-white shadow">
+      <Disclosure as="nav" data-test="nav" className="bg-white shadow">
         {({ open }) => (
           <>
             <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
@@ -31,7 +30,10 @@ const Navigation = () => {
                   </Disclosure.Button>
                 </div>
                 <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
-                  <div className="flex flex-shrink-0 items-center">
+                  <div
+                    data-test="logo"
+                    className="flex flex-shrink-0 items-center"
+                  >
                     <img
                       className="block h-8 w-auto lg:hidden"
                       src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
@@ -46,6 +48,7 @@ const Navigation = () => {
                   <div className="hidden sm:flex sm:space-x-8 sm:ml-auto">
                     {/* Current: "border-indigo-500 text-gray-900", Default: "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700" */}
                     <NavLink
+                      data-test="collections"
                       to="/collections"
                       className={({ isActive }) =>
                         classNames(
@@ -57,6 +60,7 @@ const Navigation = () => {
                       Collections
                     </NavLink>
                     <NavLink
+                      data-test="signin"
                       to="/auth"
                       className={({ isActive }) =>
                         classNames(
@@ -82,6 +86,7 @@ const Navigation = () => {
                 </div>
                 <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
                   <button
+                    data-test="cart"
                     type="button"
                     className="rounded-full bg-white p-1 text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
                   >

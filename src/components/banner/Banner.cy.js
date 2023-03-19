@@ -1,7 +1,7 @@
 import Banner from "./Banner";
 
 describe("Banner component", () => {
-  it("mounts", () => {
+  it("renders", () => {
     cy.mount(<Banner />);
     cy.getBySel("banner-bg").should("exist");
     cy.getBySel("banner-title").should("have.text", "Fashion Collection");
