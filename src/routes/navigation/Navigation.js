@@ -1,4 +1,4 @@
-import { Outlet, NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 import { Disclosure } from "@headlessui/react";
 import {
   Bars3Icon,
@@ -30,7 +30,8 @@ const Navigation = () => {
                   </Disclosure.Button>
                 </div>
                 <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
-                  <div
+                  <Link
+                    to="/"
                     data-test="logo"
                     className="flex flex-shrink-0 items-center"
                   >
@@ -44,7 +45,7 @@ const Navigation = () => {
                       src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
                       alt="Your Company"
                     />
-                  </div>
+                  </Link>
                   <div className="hidden sm:flex sm:space-x-8 sm:ml-auto">
                     {/* Current: "border-indigo-500 text-gray-900", Default: "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700" */}
                     <NavLink
@@ -155,7 +156,6 @@ const Navigation = () => {
           </>
         )}
       </Disclosure>
-      <Outlet />
     </>
   );
 };
