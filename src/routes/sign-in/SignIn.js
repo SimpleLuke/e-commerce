@@ -1,4 +1,14 @@
+import {
+  signInWithGooglePopup,
+  createUserDocumentFromAuth,
+} from "../../utils/firebase/firebase";
+
 const SignIn = () => {
+  const logGoogleUser = async () => {
+    const { user } = await signInWithGooglePopup();
+    const userDocRef = await createUserDocumentFromAuth(user);
+    console.log(userDocRef);
+  };
   return (
     <>
       <div className="flex  min-h-[calc(100vh-64px)] overflow-auto">
@@ -33,8 +43,8 @@ const SignIn = () => {
 
                   <div className="mt-2 grid grid-cols-3 gap-3">
                     <div>
-                      <a
-                        href="#"
+                      <button
+                        onClick={logGoogleUser}
                         className="inline-flex w-full justify-center rounded-md bg-white py-2 px-3 text-gray-500 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:outline-offset-0"
                       >
                         <span className="sr-only">Sign in with Facebook</span>
@@ -50,7 +60,7 @@ const SignIn = () => {
                             clipRule="evenodd"
                           />
                         </svg>
-                      </a>
+                      </button>
                     </div>
 
                     <div>
