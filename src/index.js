@@ -6,6 +6,7 @@ import Root from "./routes/root/Root";
 import App from "./App";
 import ErrorPage from "./components/error-page/ErrorPage";
 import SignIn from "./routes/sign-in/SignIn";
+import SignUp from "./routes/sign-up/SignUp";
 import reportWebVitals from "./reportWebVitals";
 
 const router = createBrowserRouter([
@@ -21,6 +22,10 @@ const router = createBrowserRouter([
       {
         path: "/signin",
         element: <SignIn />,
+      },
+      {
+        path: "/signup",
+        element: <SignUp />,
       },
     ],
   },
