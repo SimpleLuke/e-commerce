@@ -7,6 +7,7 @@ import {
 } from "@heroicons/react/24/outline";
 import { useContext } from "react";
 import { UserContext } from "../../contexts/user.context";
+import { signOutUser } from "../../utils/firebase/firebase";
 
 const classNames = (...classes) => {
   return classes.filter(Boolean).join(" ");
@@ -14,7 +15,11 @@ const classNames = (...classes) => {
 
 const Navigation = () => {
   const { currentUser, setCurrentUser } = useContext(UserContext);
-  console.log(currentUser);
+
+  const signOutHandler = async () => {
+    await signOutUser();
+    setCurrentUser(null);
+  };
   return (
     <>
       <Disclosure as="nav" data-test="nav" className="bg-white shadow">
@@ -64,18 +69,38 @@ const Navigation = () => {
                     >
                       Collections
                     </NavLink>
-                    <NavLink
-                      data-test="signin"
-                      to="/signin"
-                      className={({ isActive }) =>
-                        classNames(
-                          isActive ? "border-indigo-500" : "border-transparent",
-                          "inline-flex items-center border-b-2  px-1 pt-1 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700"
-                        )
-                      }
-                    >
-                      Sign In
-                    </NavLink>
+                    {currentUser ? (
+                      <NavLink
+                        data-test="signin"
+                        to="/signin"
+                        onClick={signOutHandler}
+                        className={({ isActive }) =>
+                          classNames(
+                            isActive
+                              ? "border-indigo-500"
+                              : "border-transparent",
+                            "inline-flex items-center border-b-2  px-1 pt-1 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700"
+                          )
+                        }
+                      >
+                        Sign Out
+                      </NavLink>
+                    ) : (
+                      <NavLink
+                        data-test="signin"
+                        to="/signin"
+                        className={({ isActive }) =>
+                          classNames(
+                            isActive
+                              ? "border-indigo-500"
+                              : "border-transparent",
+                            "inline-flex items-center border-b-2  px-1 pt-1 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700"
+                          )
+                        }
+                      >
+                        Sign In
+                      </NavLink>
+                    )}
                     <NavLink
                       to="/cart"
                       className={({ isActive }) =>
