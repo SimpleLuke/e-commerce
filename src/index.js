@@ -7,6 +7,7 @@ import App from "./App";
 import ErrorPage from "./components/error-page/ErrorPage";
 import SignIn from "./routes/sign-in/SignIn";
 import SignUp from "./routes/sign-up/SignUp";
+import { UserProvider } from "./contexts/user.context";
 import reportWebVitals from "./reportWebVitals";
 
 const router = createBrowserRouter([
@@ -34,7 +35,9 @@ const router = createBrowserRouter([
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <RouterProvider router={router} />{" "}
+    <UserProvider>
+      <RouterProvider router={router} />
+    </UserProvider>
   </React.StrictMode>
 );
 

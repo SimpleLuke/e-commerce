@@ -5,12 +5,16 @@ import {
   ShoppingCartIcon,
   XMarkIcon,
 } from "@heroicons/react/24/outline";
+import { useContext } from "react";
+import { UserContext } from "../../contexts/user.context";
 
 const classNames = (...classes) => {
   return classes.filter(Boolean).join(" ");
 };
 
 const Navigation = () => {
+  const { currentUser, setCurrentUser } = useContext(UserContext);
+  console.log(currentUser);
   return (
     <>
       <Disclosure as="nav" data-test="nav" className="bg-white shadow">
