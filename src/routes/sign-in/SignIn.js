@@ -1,17 +1,61 @@
+import { useState } from "react";
+
 import {
   signInWithGooglePopup,
   createUserDocumentFromAuth,
+  signInAuthUserWithEmailAndPassword,
 } from "../../utils/firebase/firebase";
 
 import { Link } from "react-router-dom";
 
 import { ReactComponent as GoogleLogo } from "../../assets/google-button.svg";
 
+const defaultFormFields = {
+  email: "",
+  password: "",
+};
+
 const SignIn = () => {
-  const logGoogleUser = async () => {
+  const [formFields, setFormFields] = useState(defaultFormFields);
+  const { email, password } = formFields;
+
+  const resetFormFields = () => {
+    setFormFields(defaultFormFields);
+  };
+
+  const signInWithGoogle = async () => {
     const { user } = await signInWithGooglePopup();
     const userDocRef = await createUserDocumentFromAuth(user);
     console.log(userDocRef);
+  };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    try {
+      const response = await signInAuthUserWithEmailAndPassword(
+        email,
+        password
+      );
+      console.log(response);
+      resetFormFields();
+    } catch (error) {
+      switch (error.code) {
+        case "auth/wrong-password":
+          alert("incorrect password for email");
+          break;
+        case "auth/user-not-found":
+          alert("no user associated with this email");
+          break;
+        default:
+          console.log(error);
+      }
+    }
+  };
+
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setFormFields({ ...formFields, [name]: value });
   };
   return (
     <>
@@ -48,7 +92,7 @@ const SignIn = () => {
                   <div className="mt-2 grid grid-cols-1">
                     <div>
                       <button
-                        onClick={logGoogleUser}
+                        onClick={signInWithGoogle}
                         className="inline-flex w-full justify-center rounded-md bg-white py-2 px-3 text-gray-500 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:outline-offset-0"
                       >
                         <span className="sr-only">Sign in with Google</span>
@@ -74,7 +118,7 @@ const SignIn = () => {
               </div>
 
               <div className="mt-6">
-                <form action="#" method="POST" className="space-y-6">
+                <form onSubmit={handleSubmit} className="space-y-6">
                   <div>
                     <label
                       htmlFor="email"
@@ -87,6 +131,8 @@ const SignIn = () => {
                         id="email"
                         name="email"
                         type="email"
+                        onChange={handleChange}
+                        value={email}
                         autoComplete="email"
                         required
                         className="block w-full rounded-md border-0 py-1.5 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
@@ -106,6 +152,8 @@ const SignIn = () => {
                         id="password"
                         name="password"
                         type="password"
+                        onChange={handleChange}
+                        value={password}
                         autoComplete="current-password"
                         required
                         className="block w-full rounded-md border-0 py-1.5 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"

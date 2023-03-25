@@ -62,7 +62,7 @@ const Navigation = () => {
                     </NavLink>
                     <NavLink
                       data-test="signin"
-                      to="/auth"
+                      to="/signin"
                       className={({ isActive }) =>
                         classNames(
                           isActive ? "border-indigo-500" : "border-transparent",
