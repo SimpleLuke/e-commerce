@@ -14,12 +14,8 @@ const classNames = (...classes) => {
 };
 
 const Navigation = () => {
-  const { currentUser, setCurrentUser } = useContext(UserContext);
+  const { currentUser } = useContext(UserContext);
 
-  const signOutHandler = async () => {
-    await signOutUser();
-    setCurrentUser(null);
-  };
   return (
     <>
       <Disclosure as="nav" data-test="nav" className="bg-white shadow">
@@ -73,7 +69,7 @@ const Navigation = () => {
                       <NavLink
                         data-test="signin"
                         to="/signin"
-                        onClick={signOutHandler}
+                        onClick={signOutUser}
                         className={({ isActive }) =>
                           classNames(
                             isActive
