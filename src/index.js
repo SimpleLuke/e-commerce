@@ -9,6 +9,8 @@ import SignIn from "./routes/sign-in/SignIn";
 import SignUp from "./routes/sign-up/SignUp";
 import { UserProvider } from "./contexts/user.context";
 import reportWebVitals from "./reportWebVitals";
+import Collection from "./routes/collection/collection";
+import { ProductProvider } from "./contexts/products.context";
 
 const router = createBrowserRouter([
   {
@@ -28,6 +30,10 @@ const router = createBrowserRouter([
         path: "/signup",
         element: <SignUp />,
       },
+      {
+        path: "/collections",
+        element: <Collection />,
+      },
     ],
   },
 ]);
@@ -36,7 +42,9 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <UserProvider>
-      <RouterProvider router={router} />
+      <ProductProvider>
+        <RouterProvider router={router} />
+      </ProductProvider>
     </UserProvider>
   </React.StrictMode>
 );
