@@ -8,6 +8,7 @@ import {
 import { useContext } from "react";
 import { UserContext } from "../../contexts/user.context";
 import { signOutUser } from "../../utils/firebase/firebase";
+import CartIcon from "../../components/cart-icon/CartIcon";
 
 const classNames = (...classes) => {
   return classes.filter(Boolean).join(" ");
@@ -116,8 +117,7 @@ const Navigation = () => {
                     type="button"
                     className="rounded-full bg-white p-1 text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
                   >
-                    <span className="sr-only">View notifications</span>
-                    <ShoppingCartIcon className="h-6 w-6" aria-hidden="true" />
+                    <CartIcon />
                   </button>
                 </div>
               </div>
