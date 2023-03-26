@@ -11,6 +11,7 @@ import { UserProvider } from "./contexts/user.context";
 import reportWebVitals from "./reportWebVitals";
 import Collection from "./routes/collection/collection";
 import { ProductProvider } from "./contexts/products.context";
+import { CartProvider } from "./contexts/cart.context";
 
 const router = createBrowserRouter([
   {
@@ -43,7 +44,9 @@ root.render(
   <React.StrictMode>
     <UserProvider>
       <ProductProvider>
-        <RouterProvider router={router} />
+        <CartProvider>
+          <RouterProvider router={router} />
+        </CartProvider>
       </ProductProvider>
     </UserProvider>
   </React.StrictMode>

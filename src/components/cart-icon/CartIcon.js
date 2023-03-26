@@ -1,20 +1,18 @@
-import { Fragment } from "react";
+import { Fragment, useContext } from "react";
 import { Menu, Transition } from "@headlessui/react";
-import { EllipsisVerticalIcon } from "@heroicons/react/20/solid";
 import { ReactComponent as ShoppingIcon } from "../../assets/shopping-bag.svg";
-
-function classNames(...classes) {
-  return classes.filter(Boolean).join(" ");
-}
+import { CartContext } from "../../contexts/cart.context";
+import CartItem from "../cart-item/CartItem";
 
 const CartIcon = () => {
+  const { cartItems } = useContext(CartContext);
   return (
     <Menu as="div" className="relative inline-block text-left">
       <div>
-        <Menu.Button className="flex items-center rounded-full bg-white text-gray-400 hover:text-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-50 focus:ring-offset-2 focus:ring-offset-gray-100">
+        <Menu.Button className="flex items-center rounded-full bg-white text-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-50 focus:ring-offset-2 focus:ring-offset-gray-100">
           <span className="sr-only">Open options</span>
           <ShoppingIcon className="h-5 w-5" aria-hidden="true" />
-          <span className="absolute text-sm text-gray-600 left-[5.5px] top-[3px]">
+          <span className="absolute text-xs text-gray-600 left-[6px] top-[5px]">
             0
           </span>
         </Menu.Button>
@@ -31,6 +29,19 @@ const CartIcon = () => {
       >
         <Menu.Items className="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
           <div className="py-1">
+            <Menu.Item>
+              <div className="flex flex-col">
+                {cartItems.length ? (
+                  cartItems.map((cartItem) => (
+                    <CartItem key={cartItem.id} cartItem={cartItem} />
+                  ))
+                ) : (
+                  <span className="text-center mx-auto">
+                    Your cart is empty
+                  </span>
+                )}
+              </div>
+            </Menu.Item>
             <Menu.Item>
               <button className="block w-3/4 mx-auto my-3 rounded-md border border-transparent bg-indigo-600 py-2 px-2 font-medium text-sm text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-50">
                 Checkout
