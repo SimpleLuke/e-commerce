@@ -42,8 +42,13 @@ function classNames(...classes) {
 }
 
 const Checkout = () => {
-  const { cartItems, clearItemFromCart, addItemToCart, removeItemToCart } =
-    useContext(CartContext);
+  const {
+    cartItems,
+    clearItemFromCart,
+    addItemToCart,
+    removeItemToCart,
+    cartTotal,
+  } = useContext(CartContext);
   const [selectedDeliveryMethod, setSelectedDeliveryMethod] = useState(
     deliveryMethods[0]
   );
@@ -518,22 +523,10 @@ const Checkout = () => {
                 ))}
               </ul>
               <dl className="space-y-6 border-t border-gray-200 px-4 py-6 sm:px-6">
-                <div className="flex items-center justify-between">
-                  <dt className="text-sm">Subtotal</dt>
-                  <dd className="text-sm font-medium text-gray-900">$64.00</dd>
-                </div>
-                <div className="flex items-center justify-between">
-                  <dt className="text-sm">Shipping</dt>
-                  <dd className="text-sm font-medium text-gray-900">$5.00</dd>
-                </div>
-                <div className="flex items-center justify-between">
-                  <dt className="text-sm">Taxes</dt>
-                  <dd className="text-sm font-medium text-gray-900">$5.52</dd>
-                </div>
                 <div className="flex items-center justify-between border-t border-gray-200 pt-6">
                   <dt className="text-base font-medium">Total</dt>
                   <dd className="text-base font-medium text-gray-900">
-                    $75.52
+                    £{cartTotal}
                   </dd>
                 </div>
               </dl>
