@@ -1,4 +1,5 @@
 import { Outlet } from "react-router-dom";
+import ScrollToTop from "../../components/scroll-top/ScrollToTop";
 
 import Navigation from "../navigation/Navigation";
 
@@ -6,7 +7,9 @@ const Root = () => {
   return (
     <>
       <Navigation />
-      <Outlet />
+      <ScrollToTop>
+        <Outlet />
+      </ScrollToTop>
     </>
   );
 };

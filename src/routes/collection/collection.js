@@ -1,10 +1,10 @@
 import { Fragment, useContext } from "react";
+import { Link } from "react-router-dom";
 import { CategoriesContext } from "../../contexts/categories.context";
 import ProductCard from "../../components/product-card/ProductCard";
 
 const Collection = () => {
   const { categoriesMap } = useContext(CategoriesContext);
-  console.log(categoriesMap);
 
   return (
     <div className="bg-white">
@@ -12,9 +12,9 @@ const Collection = () => {
         <Fragment>
           {Object.keys(categoriesMap).map((title) => (
             <Fragment key={title}>
-              <h2 className="text-xl font-bold text-gray-900">
+              <Link to={`${title}`} className="text-xl font-bold text-gray-900">
                 {title.toUpperCase()}
-              </h2>
+              </Link>
               <div className="mt-8 mb-8 grid grid-cols-1 gap-y-12 sm:grid-cols-2 sm:gap-x-6 lg:grid-cols-4 xl:gap-x-8">
                 {categoriesMap[title]
                   .filter((_, idx) => idx < 4)

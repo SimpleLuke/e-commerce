@@ -13,6 +13,7 @@ import Collection from "./routes/collection/collection";
 import { CategoriesProvider } from "./contexts/categories.context";
 import { CartProvider } from "./contexts/cart.context";
 import Checkout from "./routes/checkout/Checkout";
+import Category from "./components/category/Category";
 
 const router = createBrowserRouter([
   {
@@ -36,6 +37,27 @@ const router = createBrowserRouter([
         path: "/collections",
         element: <Collection />,
       },
+      {
+        path: "/collections/hats",
+        element: <Category title="hats" />,
+      },
+      {
+        path: "/collections/jackets",
+        element: <Category title="jackets" />,
+      },
+      {
+        path: "/collections/mens",
+        element: <Category title="mens" />,
+      },
+      {
+        path: "/collections/sneakers",
+        element: <Category title="sneakers" />,
+      },
+      {
+        path: "/collections/womens",
+        element: <Category title="womens" />,
+      },
+
       {
         path: "/checkout",
         element: <Checkout />,
