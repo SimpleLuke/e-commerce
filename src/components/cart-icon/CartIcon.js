@@ -3,11 +3,15 @@ import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { Menu, Transition } from "@headlessui/react";
 import { ReactComponent as ShoppingIcon } from "../../assets/shopping-bag.svg";
-import { selectCartCount } from "../../store/cart/cart.selector";
+import {
+  selectCartCount,
+  selectCartItems,
+} from "../../store/cart/cart.selector";
 import CartItem from "../cart-item/CartItem";
 
 const CartIcon = () => {
   const cartCount = useSelector(selectCartCount);
+  const cartItems = useSelector(selectCartItems);
 
   return (
     <Menu as="div" className="relative inline-block text-left">
