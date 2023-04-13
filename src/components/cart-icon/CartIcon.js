@@ -1,4 +1,5 @@
 import { Fragment, useContext } from "react";
+import { Link } from "react-router-dom";
 import { Menu, Transition } from "@headlessui/react";
 import { ReactComponent as ShoppingIcon } from "../../assets/shopping-bag.svg";
 import { CartContext } from "../../contexts/cart.context";
@@ -43,9 +44,12 @@ const CartIcon = () => {
               </div>
             </Menu.Item>
             <Menu.Item>
-              <button className="block w-3/4 mx-auto my-3 rounded-md border border-transparent bg-indigo-600 py-2 px-2 font-medium text-sm text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-50">
+              <Link
+                to="/checkout"
+                className="text-center block w-3/4 mx-auto my-3 rounded-md border border-transparent bg-indigo-600 py-2 px-2 font-medium text-sm text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-50"
+              >
                 Checkout
-              </button>
+              </Link>
             </Menu.Item>
           </div>
         </Menu.Items>

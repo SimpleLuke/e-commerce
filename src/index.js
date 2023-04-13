@@ -12,6 +12,7 @@ import reportWebVitals from "./reportWebVitals";
 import Collection from "./routes/collection/collection";
 import { ProductProvider } from "./contexts/products.context";
 import { CartProvider } from "./contexts/cart.context";
+import Checkout from "./routes/checkout/Checkout";
 
 const router = createBrowserRouter([
   {
@@ -35,6 +36,11 @@ const router = createBrowserRouter([
         path: "/collections",
         element: <Collection />,
       },
+      {
+        path: "/checkout",
+        element: <Checkout />,
+      },
+      ,
     ],
   },
 ]);
