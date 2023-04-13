@@ -12,11 +12,15 @@ const Collection = () => {
         <Fragment>
           {Object.keys(categoriesMap).map((title) => (
             <Fragment key={title}>
-              <h2 className="text-xl font-bold text-gray-900">{title}</h2>
-              <div className="mt-8 grid grid-cols-1 gap-y-12 sm:grid-cols-2 sm:gap-x-6 lg:grid-cols-4 xl:gap-x-8">
-                {categoriesMap[title].map((product) => (
-                  <ProductCard key={product.id} product={product} />
-                ))}
+              <h2 className="text-xl font-bold text-gray-900">
+                {title.toUpperCase()}
+              </h2>
+              <div className="mt-8 mb-8 grid grid-cols-1 gap-y-12 sm:grid-cols-2 sm:gap-x-6 lg:grid-cols-4 xl:gap-x-8">
+                {categoriesMap[title]
+                  .filter((_, idx) => idx < 4)
+                  .map((product) => (
+                    <ProductCard key={product.id} product={product} />
+                  ))}
               </div>
             </Fragment>
           ))}
