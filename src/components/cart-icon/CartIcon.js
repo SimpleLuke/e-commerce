@@ -5,15 +5,15 @@ import { CartContext } from "../../contexts/cart.context";
 import CartItem from "../cart-item/CartItem";
 
 const CartIcon = () => {
-  const { cartItems } = useContext(CartContext);
+  const { cartItems, cartCount } = useContext(CartContext);
   return (
     <Menu as="div" className="relative inline-block text-left">
       <div>
         <Menu.Button className="flex items-center rounded-full bg-white text-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-50 focus:ring-offset-2 focus:ring-offset-gray-100">
           <span className="sr-only">Open options</span>
           <ShoppingIcon className="h-5 w-5" aria-hidden="true" />
-          <span className="absolute text-xs text-gray-600 left-[6px] top-[5px]">
-            0
+          <span className="absolute text-xs text-gray-600 left-1/2 top-[65%] -translate-x-1/2 -translate-y-1/2">
+            {cartCount}
           </span>
         </Menu.Button>
       </div>
