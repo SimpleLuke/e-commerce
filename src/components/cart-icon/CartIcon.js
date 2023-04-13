@@ -1,12 +1,14 @@
-import { Fragment, useContext } from "react";
+import { Fragment } from "react";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { Menu, Transition } from "@headlessui/react";
 import { ReactComponent as ShoppingIcon } from "../../assets/shopping-bag.svg";
-import { CartContext } from "../../contexts/cart.context";
+import { selectCartCount } from "../../store/cart/cart.selector";
 import CartItem from "../cart-item/CartItem";
 
 const CartIcon = () => {
-  const { cartItems, cartCount } = useContext(CartContext);
+  const cartCount = useSelector(selectCartCount);
+
   return (
     <Menu as="div" className="relative inline-block text-left">
       <div>

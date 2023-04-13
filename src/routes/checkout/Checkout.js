@@ -1,5 +1,15 @@
-import { useState, useContext } from "react";
-import { CartContext } from "../../contexts/cart.context";
+import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+
+import {
+  selectCartItems,
+  selectCartTotal,
+} from "../../store/cart/cart.selector";
+import {
+  clearItemFromCart,
+  addItemToCart,
+  removeItemFromCart,
+} from "../../store/cart/cart.action";
 import { RadioGroup } from "@headlessui/react";
 import {
   CheckCircleIcon,
@@ -8,20 +18,6 @@ import {
   MinusIcon,
 } from "@heroicons/react/20/solid";
 
-const products = [
-  {
-    id: 1,
-    title: "Basic Tee",
-    href: "#",
-    price: "$32.00",
-    color: "Black",
-    size: "Large",
-    imageSrc:
-      "https://tailwindui.com/img/ecommerce-images/checkout-page-02-product-01.jpg",
-    imageAlt: "Front of men's Basic Tee in black.",
-  },
-  // More products...
-];
 const deliveryMethods = [
   {
     id: 1,
@@ -42,13 +38,17 @@ function classNames(...classes) {
 }
 
 const Checkout = () => {
-  const {
-    cartItems,
-    clearItemFromCart,
-    addItemToCart,
-    removeItemToCart,
-    cartTotal,
-  } = useContext(CartContext);
+  const dispatch = useDispatch();
+  const cartItems = useSelector(selectCartItems);
+  const cartTotal = useSelector(selectCartTotal);
+
+  const clearItemHandler = (cartItem) =>
+    dispatch(clearItemFromCart(cartItems, cartItem));
+  const addItemHandler = (cartItem) =>
+    dispatch(addItemToCart(cartItems, cartItem));
+  const removeItemHandler = (cartItem) =>
+    dispatch(removeItemFromCart(cartItems, cartItem));
+
   const [selectedDeliveryMethod, setSelectedDeliveryMethod] = useState(
     deliveryMethods[0]
   );
@@ -479,9 +479,7 @@ const Checkout = () => {
 
                         <div className="ml-4 flow-root flex-shrink-0">
                           <button
-                            onClick={() => {
-                              clearItemFromCart(product);
-                            }}
+                            onClick={() => clearItemHandler(product)}
                             type="button"
                             className="-m-2.5 flex items-center justify-center bg-white p-2.5 text-gray-400 hover:text-gray-500"
                           >
@@ -503,14 +501,14 @@ const Checkout = () => {
 
                         <div className="ml-4">
                           <button
-                            onClick={() => addItemToCart(product)}
+                            onClick={() => addItemHandler(product)}
                             type="button"
                             className="rounded-full bg-gray-50 p-1 text-black shadow-sm hover:bg-gray-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                           >
                             <PlusIcon className="h-5 w-5" aria-hidden="true" />
                           </button>
                           <button
-                            onClick={() => removeItemToCart(product)}
+                            onClick={() => removeItemHandler(product)}
                             type="button"
                             className="rounded-full bg-gray-50 p-1 text-black shadow-sm hover:bg-gray-100  focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                           >
