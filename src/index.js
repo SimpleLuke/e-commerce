@@ -10,7 +10,7 @@ import SignUp from "./routes/sign-up/SignUp";
 import { UserProvider } from "./contexts/user.context";
 import reportWebVitals from "./reportWebVitals";
 import Collection from "./routes/collection/collection";
-import { ProductProvider } from "./contexts/products.context";
+import { CategoriesProvider } from "./contexts/categories.context";
 import { CartProvider } from "./contexts/cart.context";
 import Checkout from "./routes/checkout/Checkout";
 
@@ -49,11 +49,11 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <UserProvider>
-      <ProductProvider>
+      <CategoriesProvider>
         <CartProvider>
           <RouterProvider router={router} />
         </CartProvider>
-      </ProductProvider>
+      </CategoriesProvider>
     </UserProvider>
   </React.StrictMode>
 );
