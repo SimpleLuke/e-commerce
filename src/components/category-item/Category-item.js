@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 const CategoryItem = ({ categories }) => {
   return (
     <div className="bg-white">
@@ -15,10 +17,10 @@ const CategoryItem = ({ categories }) => {
 
         <div className="mt-10 space-y-12 lg:grid lg:grid-cols-3 lg:gap-x-8 lg:space-y-0">
           {categories.map((category) => (
-            <a
+            <Link
+              to={category.route}
               data-test="category-item"
               key={category.name}
-              href={""}
               className="group block"
             >
               <div
@@ -37,7 +39,7 @@ const CategoryItem = ({ categories }) => {
               <p className="mt-2 text-sm text-gray-500">
                 {category.description}
               </p>
-            </a>
+            </Link>
           ))}
         </div>
       </div>

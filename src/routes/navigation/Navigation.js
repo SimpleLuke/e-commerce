@@ -1,10 +1,6 @@
 import { NavLink, Link } from "react-router-dom";
 import { Disclosure } from "@headlessui/react";
-import {
-  Bars3Icon,
-  ShoppingCartIcon,
-  XMarkIcon,
-} from "@heroicons/react/24/outline";
+import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { useContext } from "react";
 import { UserContext } from "../../contexts/user.context";
 import { signOutUser } from "../../utils/firebase/firebase";
@@ -44,12 +40,12 @@ const Navigation = () => {
                     <img
                       className="block h-8 w-auto lg:hidden"
                       src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
-                      alt="Your Company"
+                      alt="Clothing Company"
                     />
                     <img
                       className="hidden h-8 w-auto lg:block"
                       src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
-                      alt="Your Company"
+                      alt="Clothing Company"
                     />
                   </Link>
                   <div className="hidden sm:flex sm:space-x-8 sm:ml-auto">
@@ -98,17 +94,6 @@ const Navigation = () => {
                         Sign In
                       </NavLink>
                     )}
-                    <NavLink
-                      to="/cart"
-                      className={({ isActive }) =>
-                        classNames(
-                          isActive ? "border-indigo-500" : "border-transparent",
-                          "inline-flex items-center border-b-2  px-1 pt-1 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700"
-                        )
-                      }
-                    >
-                      Cart
-                    </NavLink>
                   </div>
                 </div>
                 <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">

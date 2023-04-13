@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 const Banner = () => {
   return (
     <div className="bg-white">
@@ -26,13 +28,13 @@ const Banner = () => {
                 and fabulous.
               </p>
             </div>
-            <a
+            <Link
+              to="collections"
               data-test="banner-btm"
-              href="#"
               className="mt-6 flex flex-shrink-0 items-center justify-center rounded-md border border-white border-opacity-25 bg-white bg-opacity-0 py-3 px-4 text-base font-medium text-white hover:bg-opacity-10 sm:mt-0 sm:ml-8 lg:ml-0 lg:w-full"
             >
               View the collection
-            </a>
+            </Link>
           </div>
         </div>
       </div>
