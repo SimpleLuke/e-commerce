@@ -38,26 +38,9 @@ const router = createBrowserRouter([
         element: <Collection />,
       },
       {
-        path: "/collections/hats",
-        element: <Category title="hats" />,
+        path: "/collections/:category",
+        element: <Category />,
       },
-      {
-        path: "/collections/jackets",
-        element: <Category title="jackets" />,
-      },
-      {
-        path: "/collections/mens",
-        element: <Category title="mens" />,
-      },
-      {
-        path: "/collections/sneakers",
-        element: <Category title="sneakers" />,
-      },
-      {
-        path: "/collections/womens",
-        element: <Category title="womens" />,
-      },
-
       {
         path: "/checkout",
         element: <Checkout />,
