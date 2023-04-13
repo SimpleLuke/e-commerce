@@ -1,11 +1,12 @@
-import { useState } from "react";
+import { useState, useEffect, useContext } from "react";
+import { UserContext } from "../../contexts/user.context";
 
 import {
   signInWithGooglePopup,
   signInAuthUserWithEmailAndPassword,
 } from "../../utils/firebase/firebase";
 
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { ReactComponent as GoogleLogo } from "../../assets/google-button.svg";
 
 const defaultFormFields = {
@@ -14,8 +15,16 @@ const defaultFormFields = {
 };
 
 const SignIn = () => {
+  const navigate = useNavigate();
   const [formFields, setFormFields] = useState(defaultFormFields);
   const { email, password } = formFields;
+  const { currentUser } = useContext(UserContext);
+
+  useEffect(() => {
+    if (currentUser) {
+      navigate("/");
+    }
+  }, [currentUser]);
 
   const resetFormFields = () => {
     setFormFields(defaultFormFields);

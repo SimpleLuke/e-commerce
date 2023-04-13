@@ -1,11 +1,12 @@
-import { useState } from "react";
+import { useState, useEffect, useContext } from "react";
+import { UserContext } from "../../contexts/user.context";
 
 import {
   createAuthUserWithEmailAndPassword,
   createUserDocumentFromAuth,
 } from "../../utils/firebase/firebase";
 
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const defaultFormFields = {
   displayName: "",
@@ -15,8 +16,16 @@ const defaultFormFields = {
 };
 
 const SignUp = () => {
+  const navigate = useNavigate();
+  const { currentUser } = useContext(UserContext);
   const [formFields, setFormFields] = useState(defaultFormFields);
   const { displayName, email, password, confirmPassword } = formFields;
+
+  useEffect(() => {
+    if (currentUser) {
+      navigate("/");
+    }
+  }, [currentUser]);
 
   const resetFormFields = () => {
     setFormFields(defaultFormFields);
