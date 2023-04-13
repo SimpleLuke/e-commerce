@@ -1,19 +1,24 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import "./index.css";
+import { Provider } from "react-redux";
+import { UserProvider } from "./contexts/user.context";
+import { CategoriesProvider } from "./contexts/categories.context";
+import { CartProvider } from "./contexts/cart.context";
+
+import { store } from "./store/store";
+
 import Root from "./routes/root/Root";
 import App from "./App";
 import ErrorPage from "./components/error-page/ErrorPage";
 import SignIn from "./routes/sign-in/SignIn";
 import SignUp from "./routes/sign-up/SignUp";
-import { UserProvider } from "./contexts/user.context";
-import reportWebVitals from "./reportWebVitals";
 import Collection from "./routes/collection/collection";
-import { CategoriesProvider } from "./contexts/categories.context";
-import { CartProvider } from "./contexts/cart.context";
 import Checkout from "./routes/checkout/Checkout";
 import Category from "./components/category/Category";
+
+import reportWebVitals from "./reportWebVitals";
+import "./index.css";
 
 const router = createBrowserRouter([
   {
@@ -53,13 +58,13 @@ const router = createBrowserRouter([
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <UserProvider>
+    <Provider store={store}>
       <CategoriesProvider>
         <CartProvider>
           <RouterProvider router={router} />
         </CartProvider>
       </CategoriesProvider>
-    </UserProvider>
+    </Provider>
   </React.StrictMode>
 );
 

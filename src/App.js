@@ -1,50 +1,28 @@
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { setCurrentUser } from "./store/user/user.action";
+import {
+  onAuthStateChangedListener,
+  createUserDocumentFromAuth,
+} from "./utils/firebase/firebase";
 import Directory from "./components/directory/Directory";
 
 function App() {
-  const categories = [
-    {
-      id: 1,
-      name: "Hats Collection",
-      imageSrc: "https://i.ibb.co/cvpntL1/hats.png",
-      imageAlt: "",
-      description: "",
-      route: "collections/hats",
-    },
-    {
-      id: 2,
-      name: "Jackets Collection",
-      imageSrc: "https://i.ibb.co/px2tCc3/jackets.png",
-      imageAlt: "",
-      description: "",
-      route: "collections/jackets",
-    },
-    {
-      id: 3,
-      name: "Sneakers Collection",
-      imageSrc: "https://i.ibb.co/0jqHpnp/sneakers.png",
-      imageAlt: "",
-      description: "",
-      route: "collections/sneakers",
-    },
-    {
-      id: 4,
-      name: "Womens Collection",
-      imageSrc: "https://i.ibb.co/GCCdy8t/womens.png",
-      imageAlt: "",
-      description: "",
-      route: "collections/womens",
-    },
-    {
-      id: 5,
-      name: "Mens Collection",
-      imageSrc: "https://i.ibb.co/R70vBrQ/men.png",
-      imageAlt: "",
-      description: "",
-      route: "collections/mens",
-    },
-  ];
+  const dispatch = useDispatch();
 
-  return <Directory categories={categories} />;
+  useEffect(() => {
+    const unsubscribe = onAuthStateChangedListener((user) => {
+      if (user) {
+        createUserDocumentFromAuth(user);
+      }
+
+      dispatch(setCurrentUser(user));
+    });
+
+    return unsubscribe;
+  }, [dispatch]);
+
+  return <Directory />;
 }
 
 export default App;

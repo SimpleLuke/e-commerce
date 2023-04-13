@@ -1,8 +1,8 @@
 import { NavLink, Link } from "react-router-dom";
 import { Disclosure } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
-import { useContext } from "react";
-import { UserContext } from "../../contexts/user.context";
+import { useSelector } from "react-redux";
+import { selectCurrentUser } from "../../store/user/user.selector";
 import { signOutUser } from "../../utils/firebase/firebase";
 import CartIcon from "../../components/cart-icon/CartIcon";
 
@@ -11,7 +11,7 @@ const classNames = (...classes) => {
 };
 
 const Navigation = () => {
-  const { currentUser } = useContext(UserContext);
+  const currentUser = useSelector(selectCurrentUser);
 
   return (
     <>
