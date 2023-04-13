@@ -5,6 +5,7 @@ const ProductCard = ({ product }) => {
   const { addItemToCart } = useContext(CartContext);
 
   const addProductToCart = () => addItemToCart(product);
+
   return (
     <div key={product.id}>
       <div className="relative">

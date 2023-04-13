@@ -1,10 +1,24 @@
-import { Fragment, useContext } from "react";
+import { Fragment, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { CategoriesContext } from "../../contexts/categories.context";
+import { useSelector, useDispatch } from "react-redux";
+import { getCategoriesAndDocuments } from "../../utils/firebase/firebase";
+import { selectCategoriesMap } from "../../store/categories/categories.selector";
+import { setCategoriesMap } from "../../store/categories/categories.action";
 import ProductCard from "../../components/product-card/ProductCard";
 
 const Collection = () => {
-  const { categoriesMap } = useContext(CategoriesContext);
+  const dispatch = useDispatch();
+  const categoriesMap = useSelector(selectCategoriesMap);
+
+  useEffect(() => {
+    const getCategoriesMap = async () => {
+      const categoryMap = await getCategoriesAndDocuments("collections");
+      console.log("Here ", categoriesMap);
+      dispatch(setCategoriesMap(categoryMap));
+    };
+
+    getCategoriesMap();
+  }, []);
 
   return (
     <div className="bg-white">
