@@ -1,6 +1,20 @@
+import { FC } from "react";
 import { Link } from "react-router-dom";
 
-const CategoryItem = ({ categories }) => {
+type Category = {
+      id: number;
+      name: string;
+      imageSrc: string;
+      imageAlt: string;
+      description: string;
+      route: string;
+}
+
+type Categories = {
+  categories: Category[]
+}
+
+const CategoryItem: FC<Categories> = ({ categories }) => {
   return (
     <div className="bg-white">
       <div className="mx-auto max-w-xl py-8 px-4 sm:py-12 sm:px-6 lg:max-w-7xl lg:px-8">

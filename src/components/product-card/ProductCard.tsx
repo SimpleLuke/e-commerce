@@ -2,8 +2,18 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { selectCartItems } from "../../store/cart/cart.selector";
 import { addItemToCart } from "../../store/cart/cart.action";
+import { FC } from "react";
 
-const ProductCard = ({ product }) => {
+type Product = {
+  product: {
+    id:number;
+    imageUrl:string;
+    name:string;
+    price:number;
+  }
+}
+
+const ProductCard:FC<Product> = ({ product }) => {
   const dispatch = useDispatch();
   const cartItems = useSelector(selectCartItems);
 
@@ -15,7 +25,7 @@ const ProductCard = ({ product }) => {
         <div className="relative h-72 w-full overflow-hidden rounded-lg">
           <img
             src={product.imageUrl}
-            alt={product.imageAlt}
+            alt=''
             className="h-full w-full object-cover object-center"
           />
         </div>
