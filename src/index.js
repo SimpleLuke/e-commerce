@@ -16,6 +16,7 @@ import Category from "./components/category/Category";
 
 import reportWebVitals from "./reportWebVitals";
 import "./index.css";
+import { UserProvider } from "./contexts/user.context";
 
 const router = createBrowserRouter([
   {
@@ -57,7 +58,9 @@ root.render(
   <React.StrictMode>
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
-        <RouterProvider router={router} />
+        <UserProvider>
+          <RouterProvider router={router} />
+        </UserProvider>
       </PersistGate>
     </Provider>
   </React.StrictMode>
