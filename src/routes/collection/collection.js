@@ -13,7 +13,7 @@ const Collection = () => {
   useEffect(() => {
     const getCategoriesMap = async () => {
       const categoryMap = await getCategoriesAndDocuments("collections");
-      console.log("Here ", categoriesMap);
+      console.log("Here Map", categoriesMap);
       dispatch(setCategoriesMap(categoryMap));
     };
 
