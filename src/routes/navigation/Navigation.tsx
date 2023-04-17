@@ -6,7 +6,7 @@ import { selectCurrentUser } from "../../store/user/user.selector";
 import { signOutUser } from "../../utils/firebase/firebase";
 import CartIcon from "../../components/cart-icon/CartIcon";
 
-const classNames = (...classes) => {
+const classNames = (...classes:string[]) => {
   return classes.filter(Boolean).join(" ");
 };
 
@@ -99,7 +99,6 @@ const Navigation = () => {
                 <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
                   <div
                     data-test="cart"
-                    type="button"
                     className="rounded-full bg-white p-1 text-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
                   >
                     <CartIcon />
@@ -114,7 +113,7 @@ const Navigation = () => {
                   {/* Current: "bg-indigo-50 border-indigo-500 text-indigo-700", Default: "border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700" */}
                   <Disclosure.Button as="div">
                     <NavLink
-                      onClick={close}
+                      onClick={()=>close()}
                       to="/collections"
                       className={({ isActive }) =>
                         classNames(
@@ -130,8 +129,8 @@ const Navigation = () => {
                   </Disclosure.Button>
                   <Disclosure.Button as="div">
                     <NavLink
-                      onClick={close}
-                      to="/auth"
+                      onClick={()=>close()}
+                      to="/signin"
                       className={({ isActive }) =>
                         classNames(
                           isActive
@@ -142,22 +141,6 @@ const Navigation = () => {
                       }
                     >
                       Sign In
-                    </NavLink>
-                  </Disclosure.Button>
-                  <Disclosure.Button as="div">
-                    <NavLink
-                      onClick={close}
-                      to="/cart"
-                      className={({ isActive }) =>
-                        classNames(
-                          isActive
-                            ? "border-indigo-500 bg-indigo-50 text-indigo-700"
-                            : "border-transparent text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700",
-                          "block border-l-4  py-2 pl-3 pr-4 text-base font-medium "
-                        )
-                      }
-                    >
-                      Cart
                     </NavLink>
                   </Disclosure.Button>
                 </div>

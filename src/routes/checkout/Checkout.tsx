@@ -17,6 +17,7 @@ import {
   PlusIcon,
   MinusIcon,
 } from "@heroicons/react/20/solid";
+import { CartItem } from "../../store/cart/cart.types";
 
 const deliveryMethods = [
   {
@@ -33,7 +34,7 @@ const paymentMethods = [
   { id: "etransfer", title: "eTransfer" },
 ];
 
-function classNames(...classes) {
+function classNames(...classes:string[]) {
   return classes.filter(Boolean).join(" ");
 }
 
@@ -42,11 +43,11 @@ const Checkout = () => {
   const cartItems = useSelector(selectCartItems);
   const cartTotal = useSelector(selectCartTotal);
 
-  const clearItemHandler = (cartItem) =>
+  const clearItemHandler = (cartItem :CartItem) =>
     dispatch(clearItemFromCart(cartItems, cartItem));
-  const addItemHandler = (cartItem) =>
+  const addItemHandler = (cartItem:CartItem) =>
     dispatch(addItemToCart(cartItems, cartItem));
-  const removeItemHandler = (cartItem) =>
+  const removeItemHandler = (cartItem:CartItem) =>
     dispatch(removeItemFromCart(cartItems, cartItem));
 
   const [selectedDeliveryMethod, setSelectedDeliveryMethod] = useState(
@@ -462,7 +463,7 @@ const Checkout = () => {
 
             <div className="mt-4 rounded-lg border border-gray-200 bg-white shadow-sm">
               <h3 className="sr-only">Items in your cart</h3>
-              <ul role="list" className="divide-y divide-gray-200">
+              <ul className="divide-y divide-gray-200">
                 {cartItems.map((product) => (
                   <li key={product.id} className="flex px-4 py-6 sm:px-6">
                     <div className="flex-shrink-0">
