@@ -5,13 +5,21 @@ import { useSelector } from "react-redux";
 import { selectCurrentUser } from "../../store/user/user.selector";
 import { signOutUser } from "../../utils/firebase/firebase";
 import CartIcon from "../../components/cart-icon/CartIcon";
+import { useContext } from "react";
+import { UserContext } from "../../contexts/user.context";
 
 const classNames = (...classes:string[]) => {
   return classes.filter(Boolean).join(" ");
 };
 
 const Navigation = () => {
-  const currentUser = useSelector(selectCurrentUser);
+  // const currentUser = useSelector(selectCurrentUser);
+  const {currentUser,setCurrentUser} = useContext(UserContext)
+
+  const signOutUserHandler = async()=>{
+    setCurrentUser(null)
+    await signOutUser()
+  }
 
   return (
     <>
@@ -64,9 +72,9 @@ const Navigation = () => {
                     </NavLink>
                     {currentUser ? (
                       <NavLink
-                        data-test="signin"
+                        data-test="signout"
                         to="/signin"
-                        onClick={signOutUser}
+                        onClick={signOutUserHandler}
                         className={({ isActive }) =>
                           classNames(
                             isActive

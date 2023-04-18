@@ -8,19 +8,19 @@ import {
 import Directory from "./components/directory/Directory";
 
 function App() {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
-  useEffect(() => {
-    const unsubscribe = onAuthStateChangedListener((user) => {
-      if (user) {
-        createUserDocumentFromAuth(user);
-      }
+  // useEffect(() => {
+  //   const unsubscribe = onAuthStateChangedListener((user) => {
+  //     if (user) {
+  //       createUserDocumentFromAuth(user);
+  //     }
 
-      dispatch(setCurrentUser(user));
-    });
+  //     dispatch(setCurrentUser(user));
+  //   });
 
-    return unsubscribe;
-  }, [dispatch]);
+  //   return unsubscribe;
+  // }, [dispatch]);
 
   return <Directory />;
 }
