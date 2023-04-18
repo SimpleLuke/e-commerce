@@ -1,70 +1,198 @@
-# Getting Started with Create React App
+<a name="readme-top"></a>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<!-- PROJECT LOGO -->
+<br />
+<div align="center">
+  <img width="1428" alt="image" src="https://user-images.githubusercontent.com/89473016/232779907-c1bb04d8-16da-4fbf-ba88-44b959a6ead7.png">
 
-## Available Scripts
+  <h3 align="center">E-commerce</h3>
 
-In the project directory, you can run:
+  <p align="center">
+    An online fashion e-commerce website <a href="https://subtle-bublanina-76bf5e.netlify.app/">Live Demo</a>
+    </p>
+   
+</div>
 
-### `npm start`
+<!-- TABLE OF CONTENTS -->
+<details>
+  <summary>Table of Contents</summary>
+  <ol>
+    <li>
+      <a href="#about-the-project">About The Project</a>
+      <ul>
+        <li><a href="#built-with">Built With</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#getting-started">Getting Started</a>
+      <ul>
+        <li><a href="#prerequisites">Prerequisites</a></li>
+        <li><a href="#installation">Installation</a></li>
+        <li><a href="#start">Start</a></li>
+        <li><a href="#test">Test</a></li>
+      </ul>
+    </li>
+    <li><a href="#usage">Usage</a></li>
+    <li><a href="#future-roadmap">Future roadmap</a></li>
+    <li><a href="#contributing">Contributing</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="#acknowledgments">Acknowledgments</a></li>
+  </ol>
+</details>
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+<!-- ABOUT THE PROJECT -->
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## About The Project
 
-### `npm test`
+This is a fashion e-commerce website.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Users can sign up with email or Google account and add fashion items to shopping cart for purchase.
 
-### `npm run build`
+They can always add or remove items during checkout.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Built With
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- TypeScript
+- React
+- React Router
+- Redux
+- Firebase & Firestore
+- Tailwind
+- Cypress
 
-### `npm run eject`
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+<!-- GETTING STARTED -->
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Getting Started
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### Prerequisites
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+- npm
+  ```sh
+  npm install npm@latest -g
+  ```
 
-## Learn More
+### Installation
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+1. Clone the repo
+   ```sh
+   git clone https://github.com/SimpleLuke/e-commerce.git
+   ```
+2. Install NPM packages
+   ```sh
+   npm install
+   ```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Start
 
-### Code Splitting
+1. Start the local server
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+   ```
+   npm start
+   ```
 
-### Analyzing the Bundle Size
+2. Browse to [http://localhost:3000](http://localhost:3000)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+### Test
 
-### Making a Progressive Web App
+- Run all frontend tests
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+  ```
+  npm test
+  ```
 
-### Advanced Configuration
+- Run frontend component tests
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+  ```
+  npm test:unit
+  ```
 
-### Deployment
+- Run frontend end-to-end tests
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+  ```
+  npm test:feature
+  ```
 
-### `npm run build` fails to minify
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+<!-- USAGE EXAMPLES -->
+
+## Usage
+
+- Sign in your account
+  <img width="1438" alt="image" src="https://user-images.githubusercontent.com/89473016/232781754-237430be-e1a8-48f9-8481-45ef26e6267e.png">
+
+- Sign up an account
+  <img width="1439" alt="image" src="https://user-images.githubusercontent.com/89473016/232781808-0de94325-cea7-480f-bdba-9eac3d0b26b2.png">
+
+- Browse all collections
+  <img width="1437" alt="image" src="https://user-images.githubusercontent.com/89473016/232781963-c314fe45-7433-4997-9e99-acb1fdc9c1dd.png">
+
+- Browse individual collection
+  <img width="1437" alt="image" src="https://user-images.githubusercontent.com/89473016/232782073-27977187-57fc-4c53-9af6-7ff15217ceed.png">
+
+- Add items to shopping cart
+  <img width="1434" alt="image" src="https://user-images.githubusercontent.com/89473016/232782216-ca881b2d-f677-4117-b39b-c98574117438.png">
+
+- Checkout page
+  <img width="1437" alt="image" src="https://user-images.githubusercontent.com/89473016/232782280-22abc387-8d6c-43c1-bf93-cb0a461497e4.png">
+
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<!-- ROADMAP -->
+
+## Future roadmap
+
+- [ ] Increase test coverage
+- [ ] Introduce Stripe for payment
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<!-- CONTRIBUTING -->
+
+## Contributing
+
+Contributions make the open-source community a fantastic place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
+
+If you have a suggestion to improve this, please fork the repo and create a pull request. You can also open an issue with the tag "enhancement".
+Remember to give the project a star! Thanks again!
+
+1. Fork the Project
+2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the Branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<!-- CONTACT -->
+
+## Contact
+
+- Website - [Luke Lai](https://lukelai.tech/)
+- LinkedIn - [Luke Lai](https://www.linkedin.com/in/luke-lai-309a3522b/)
+- Twitter - [@LukeLaiDev](https://www.twitter.com/LukeLaiDev)
+
+Project Link: [**[E-commerce](https://github.com/SimpleLuke/e-commerce)**]
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<!-- ACKNOWLEDGMENTS -->
+
+## Acknowledgments
+
+- [Netlify](https://app.netlify.com/)
+- [Tailwind CSS](https://tailwindcss.com/)
+- [TailwindUI](https://tailwindui.com/)
+- [Headless UI](https://headlessui.com/)
+- [Heroicons](https://heroicons.com/)
+- [Tailwind Cheat Sheet](https://nerdcave.com/tailwind-cheat-sheet)
+- [MDN Web Docs](https://developer.mozilla.org/)
+- [W3Schools](https://www.w3schools.com/)
+- [Unsplash](https://unsplash.com/)
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
