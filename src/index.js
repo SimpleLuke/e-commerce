@@ -16,7 +16,6 @@ import Category from "./components/category/Category";
 
 import reportWebVitals from "./reportWebVitals";
 import "./index.css";
-import { UserProvider } from "./contexts/user.context";
 
 const router = createBrowserRouter([
   {
@@ -48,7 +47,6 @@ const router = createBrowserRouter([
         path: "/checkout",
         element: <Checkout />,
       },
-      ,
     ],
   },
 ]);
@@ -58,9 +56,7 @@ root.render(
   <React.StrictMode>
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
-        <UserProvider>
-          <RouterProvider router={router} />
-        </UserProvider>
+        <RouterProvider router={router} />
       </PersistGate>
     </Provider>
   </React.StrictMode>

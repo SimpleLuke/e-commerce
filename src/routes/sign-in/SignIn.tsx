@@ -1,14 +1,14 @@
-import { useState, useEffect, useContext, FormEvent, ChangeEvent } from "react";
-import { UserContext } from "../../contexts/user.context";
-
-import {
-  signInWithGooglePopup,
-  signInAuthUserWithEmailAndPassword,
-} from "../../utils/firebase/firebase";
+import { useState, useEffect, FormEvent, ChangeEvent } from "react";
 
 import { Link, useNavigate } from "react-router-dom";
 import { ReactComponent as GoogleLogo } from "../../assets/google-button.svg";
 import { AuthError } from "firebase/auth";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  googleSignInStart,
+  emailSignInStart,
+} from "../../store/user/user.action";
+import { selectCurrentUser } from "../../store/user/user.selector";
 
 const defaultFormFields = {
   email: "",
@@ -16,10 +16,11 @@ const defaultFormFields = {
 };
 
 const SignIn = () => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const [formFields, setFormFields] = useState(defaultFormFields);
   const { email, password } = formFields;
-  const { currentUser } = useContext(UserContext);
+  const currentUser = useSelector(selectCurrentUser);
 
   useEffect(() => {
     if (currentUser) {
@@ -32,14 +33,15 @@ const SignIn = () => {
   };
 
   const signInWithGoogle = async () => {
-    await signInWithGooglePopup();
+    dispatch(googleSignInStart());
+    // signInWithGooglePopup();
   };
 
-  const handleSubmit = async (event:FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     try {
-      await signInAuthUserWithEmailAndPassword(email, password);
+      dispatch(emailSignInStart(email, password));
       resetFormFields();
     } catch (error) {
       switch ((error as AuthError).code) {
@@ -55,7 +57,7 @@ const SignIn = () => {
     }
   };
 
-  const handleChange = (event:ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
     setFormFields({ ...formFields, [name]: value });
   };

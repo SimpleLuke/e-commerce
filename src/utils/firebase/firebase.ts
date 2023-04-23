@@ -26,11 +26,7 @@ import {
   getDocs,
   QueryDocumentSnapshot,
 } from "firebase/firestore";
-import {
-  CategoriesMap,
-  Category,
-  CategoryItem,
-} from "../../store/categories/categories.types";
+import { Category } from "../../store/categories/categories.types";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -162,3 +158,17 @@ export const signOutUser = async () => await signOut(auth);
 
 export const onAuthStateChangedListener = (callback: NextOrObserver<User>) =>
   onAuthStateChanged(auth, callback);
+
+export const getCurrentUser = (): Promise<User | null> => {
+  return new Promise((resolve, reject) => {
+    const unsubscribe = onAuthStateChanged(
+      auth,
+      (userAuth) => {
+        console.log(unsubscribe);
+        unsubscribe();
+        resolve(userAuth);
+      },
+      reject
+    );
+  });
+};

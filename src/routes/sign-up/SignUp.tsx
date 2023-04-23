@@ -1,13 +1,10 @@
-import { useState, useEffect, useContext,FormEvent, ChangeEvent } from "react";
-import { AuthError,AuthErrorCodes } from "firebase/auth";
-import { UserContext } from "../../contexts/user.context";
-
-import {
-  createAuthUserWithEmailAndPassword,
-  createUserDocumentFromAuth,
-} from "../../utils/firebase/firebase";
+import { useState, useEffect, FormEvent, ChangeEvent } from "react";
+import { AuthError, AuthErrorCodes } from "firebase/auth";
 
 import { Link, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { signUpStart } from "../../store/user/user.action";
+import { selectCurrentUser } from "../../store/user/user.selector";
 
 const defaultFormFields = {
   displayName: "",
@@ -17,8 +14,9 @@ const defaultFormFields = {
 };
 
 const SignUp = () => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { currentUser } = useContext(UserContext);
+  const currentUser = useSelector(selectCurrentUser);
   const [formFields, setFormFields] = useState(defaultFormFields);
   const { displayName, email, password, confirmPassword } = formFields;
 
@@ -32,7 +30,7 @@ const SignUp = () => {
     setFormFields(defaultFormFields);
   };
 
-  const handleSubmit = async (event:FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     if (password !== confirmPassword) {
@@ -41,14 +39,8 @@ const SignUp = () => {
     }
 
     try {
-      const authData = await createAuthUserWithEmailAndPassword(
-        email,
-        password
-      );
-        if(authData){
-          await createUserDocumentFromAuth(authData.user, { displayName });
-          resetFormFields();
-        }
+      dispatch(signUpStart(email, password, displayName));
+      resetFormFields();
     } catch (error) {
       if ((error as AuthError).code === AuthErrorCodes.EMAIL_EXISTS) {
         alert("Cannot create user, email already in use");
@@ -58,7 +50,7 @@ const SignUp = () => {
     }
   };
 
-  const handleChange = (event:ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
 
     setFormFields({ ...formFields, [name]: value });

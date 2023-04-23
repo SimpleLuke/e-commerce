@@ -1,22 +1,22 @@
 import { NavLink, Link } from "react-router-dom";
 import { Disclosure } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
-import { signOutUser } from "../../utils/firebase/firebase";
 import CartIcon from "../../components/cart-icon/CartIcon";
-import { useContext } from "react";
-import { UserContext } from "../../contexts/user.context";
+import { useDispatch, useSelector } from "react-redux";
+import { selectCurrentUser } from "../../store/user/user.selector";
+import { signOutStart } from "../../store/user/user.action";
 
-const classNames = (...classes:string[]) => {
+const classNames = (...classes: string[]) => {
   return classes.filter(Boolean).join(" ");
 };
 
 const Navigation = () => {
-  const {currentUser,setCurrentUser} = useContext(UserContext)
+  const dispatch = useDispatch();
+  const currentUser = useSelector(selectCurrentUser);
 
-  const signOutUserHandler = async()=>{
-    setCurrentUser(null)
-    await signOutUser()
-  }
+  const signOutUserHandler = () => {
+    dispatch(signOutStart());
+  };
 
   return (
     <>
@@ -118,7 +118,7 @@ const Navigation = () => {
                   {/* Current: "bg-indigo-50 border-indigo-500 text-indigo-700", Default: "border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700" */}
                   <Disclosure.Button as="div">
                     <NavLink
-                      onClick={()=>close()}
+                      onClick={() => close()}
                       to="/collections"
                       className={({ isActive }) =>
                         classNames(
@@ -134,7 +134,7 @@ const Navigation = () => {
                   </Disclosure.Button>
                   <Disclosure.Button as="div">
                     <NavLink
-                      onClick={()=>close()}
+                      onClick={() => close()}
                       to="/signin"
                       className={({ isActive }) =>
                         classNames(
