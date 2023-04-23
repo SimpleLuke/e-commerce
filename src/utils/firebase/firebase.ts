@@ -26,7 +26,11 @@ import {
   getDocs,
   QueryDocumentSnapshot,
 } from "firebase/firestore";
-import { CategoriesMap, CategoryItem } from "../../store/categories/categories.types";
+import {
+  CategoriesMap,
+  Category,
+  CategoryItem,
+} from "../../store/categories/categories.types";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -57,14 +61,14 @@ export const signInWithGoogleRedirect = () =>
 export const db = getFirestore();
 
 export type OjectToAdd = {
-  title:string
-}
+  title: string;
+};
 
 //Add data to firebase database
-export const addCollectionAndDocuments = async<T extends OjectToAdd> (
-  collectionKey:string,
-  objectsToAdd:T[]
-):Promise<void> => {
+export const addCollectionAndDocuments = async <T extends OjectToAdd>(
+  collectionKey: string,
+  objectsToAdd: T[]
+): Promise<void> => {
   const batch = writeBatch(db);
   const collectionRef = collection(db, collectionKey);
 
@@ -77,34 +81,39 @@ export const addCollectionAndDocuments = async<T extends OjectToAdd> (
   console.log("done");
 };
 
-export const getCategoriesAndDocuments = async (table:string):Promise<CategoriesMap> => {
+export const getCategoriesAndDocuments = async (
+  table: string
+): Promise<Category[]> => {
   const collectionRef = collection(db, table);
   const q = query(collectionRef);
 
   const querySnapshot = await getDocs(q);
-  const categoryMap = querySnapshot.docs.reduce((acc:{[key:string]:CategoryItem[]}, docSnapshot) => {
-    const { title, items } = docSnapshot.data();
-    acc[title.toLowerCase()] = items;
-    return acc;
-  }, {});
+  return querySnapshot.docs.map(
+    (docSnapshot) => docSnapshot.data() as Category
+  );
+  // const categoryMap = querySnapshot.docs.reduce((acc:{[key:string]:CategoryItem[]}, docSnapshot) => {
+  //   const { title, items } = docSnapshot.data();
+  //   acc[title.toLowerCase()] = items;
+  //   return acc;
+  // }, {});
 
-  return categoryMap;
+  // return categoryMap;
 };
 
 export type AdditionalInformation = {
-  displayName?:string
-}
+  displayName?: string;
+};
 
 export type UserData = {
-  createdAt:Date;
-  displayName:string;
-  email:string;
-}
+  createdAt: Date;
+  displayName: string;
+  email: string;
+};
 
 export const createUserDocumentFromAuth = async (
-  userAuth:User,
+  userAuth: User,
   additionalInformation = {} as AdditionalInformation
-):Promise<void|QueryDocumentSnapshot<UserData>> => {
+): Promise<void | QueryDocumentSnapshot<UserData>> => {
   if (!userAuth) return;
   //check in database with 'users' collection with specific doc id
   const userDocRef = doc(db, "users", userAuth.uid);
@@ -128,16 +137,22 @@ export const createUserDocumentFromAuth = async (
       console.log("error creating the user", error);
     }
   }
-  return userSnapshot as QueryDocumentSnapshot<UserData> ;
+  return userSnapshot as QueryDocumentSnapshot<UserData>;
 };
 
-export const createAuthUserWithEmailAndPassword = async (email:string, password:string) => {
+export const createAuthUserWithEmailAndPassword = async (
+  email: string,
+  password: string
+) => {
   if (!email || !password) return;
 
   return await createUserWithEmailAndPassword(auth, email, password);
 };
 
-export const signInAuthUserWithEmailAndPassword = async (email:string, password:string) => {
+export const signInAuthUserWithEmailAndPassword = async (
+  email: string,
+  password: string
+) => {
   if (!email || !password) return;
 
   return await signInWithEmailAndPassword(auth, email, password);
@@ -145,5 +160,5 @@ export const signInAuthUserWithEmailAndPassword = async (email:string, password:
 
 export const signOutUser = async () => await signOut(auth);
 
-export const onAuthStateChangedListener = (callback:NextOrObserver<User>) =>
+export const onAuthStateChangedListener = (callback: NextOrObserver<User>) =>
   onAuthStateChanged(auth, callback);
