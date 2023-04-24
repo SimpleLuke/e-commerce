@@ -3,7 +3,7 @@ export const inputStyle = {
   color: "#000",
   backgroundColor: "#fff",
   fontWeight: "500",
-  fontFamily: "Roboto, Open Sans, Segoe UI, sans-serif",
+  fontFamily: "Inter var",
   fontSize: "16px",
   fontSmoothing: "antialiased",
   ":-webkit-autofill": {

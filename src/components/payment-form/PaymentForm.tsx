@@ -391,26 +391,6 @@ const PaymentForm = () => {
           <div className="mt-6 grid grid-cols-4 gap-x-4 gap-y-6">
             <div className="col-span-4">
               <label
-                htmlFor="card-number"
-                className="block text-sm font-medium text-gray-700"
-              >
-                Card number
-              </label>
-              <div className="mt-1">
-                <div className="border py-2 px-1 bg-white rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
-                  <CardNumberElement
-                    options={{
-                      style: {
-                        base: inputStyle,
-                      },
-                    }}
-                  />
-                </div>
-              </div>
-            </div>
-
-            <div className="col-span-4">
-              <label
                 htmlFor="name-on-card"
                 className="block text-sm font-medium text-gray-700"
               >
@@ -427,6 +407,25 @@ const PaymentForm = () => {
                 />
               </div>
             </div>
+            <div className="col-span-4">
+              <label
+                htmlFor="card-number"
+                className="block text-sm font-medium text-gray-700"
+              >
+                Card number
+              </label>
+              <div className="mt-1">
+                <div className="border py-2 px-3 bg-white rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                  <CardNumberElement
+                    options={{
+                      style: {
+                        base: inputStyle,
+                      },
+                    }}
+                  />
+                </div>
+              </div>
+            </div>
 
             <div className="col-span-3">
               <label
@@ -436,7 +435,7 @@ const PaymentForm = () => {
                 Expiration date (MM/YY)
               </label>
               <div className="mt-1">
-                <div className="border py-2 px-1 bg-white rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                <div className="border py-2 px-3 bg-white rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
                   <CardExpiryElement
                     options={{
                       style: {
@@ -456,7 +455,7 @@ const PaymentForm = () => {
                 CVC
               </label>
               <div className="mt-1">
-                <div className="border py-2 px-1 bg-white rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                <div className="border py-2 px-3 bg-white rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
                   <CardCvcElement
                     options={{
                       style: {
