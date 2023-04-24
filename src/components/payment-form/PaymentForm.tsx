@@ -18,6 +18,7 @@ import {
   clearItemFromCart,
   addItemToCart,
   removeItemFromCart,
+  clearCartItems,
 } from "../../store/cart/cart.action";
 
 import { CartItem } from "../../store/cart/cart.types";
@@ -30,6 +31,7 @@ import {
   MinusIcon,
 } from "@heroicons/react/20/solid";
 import { selectCurrentUser } from "../../store/user/user.selector";
+import { useNavigate } from "react-router-dom";
 const deliveryMethods = [
   {
     id: 1,
@@ -50,6 +52,7 @@ const ifValidCardElement = (
 ): card is StripeCardNumberElement => card !== null;
 
 const PaymentForm = () => {
+  const navigate = useNavigate();
   const stripe = useStripe();
   const elements = useElements();
   const dispatch = useDispatch();
@@ -67,6 +70,7 @@ const PaymentForm = () => {
     dispatch(addItemToCart(cartItems, cartItem));
   const removeItemHandler = (cartItem: CartItem) =>
     dispatch(removeItemFromCart(cartItems, cartItem));
+  const clearCartItemsHandler = () => dispatch(clearCartItems());
 
   const paymentHandler = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -106,7 +110,9 @@ const PaymentForm = () => {
       alert(paymentResult.error);
     } else {
       if (paymentResult.paymentIntent.status === "succeeded") {
+        clearCartItemsHandler();
         alert("Payment Successful");
+        navigate("/");
       }
     }
   };

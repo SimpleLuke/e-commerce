@@ -3,6 +3,7 @@ import {
   createAction,
   withMatcher,
   ActionWithPayload,
+  Action,
 } from "../../utils/reducer/reducer.utils";
 import { CART_ACTION_TYPES, CartItem } from "./cart.types";
 
@@ -52,6 +53,12 @@ const clearCartItem = (
   cartItemToClear: CartItem
 ): CartItem[] =>
   cartItems.filter((cartItem) => cartItem.id !== cartItemToClear.id);
+
+export type ClearCartItems = Action<CART_ACTION_TYPES.CLEAR_CART_ITEMS>;
+
+export const clearCartItems = withMatcher(
+  (): ClearCartItems => createAction(CART_ACTION_TYPES.CLEAR_CART_ITEMS)
+);
 
 export type SetCartItems = ActionWithPayload<
   CART_ACTION_TYPES.SET_CART_ITEMS,
