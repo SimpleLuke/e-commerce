@@ -77,6 +77,7 @@ const PaymentForm = () => {
                 name="email-address"
                 autoComplete="email"
                 className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                required
               />
             </div>
           </div>
@@ -102,6 +103,7 @@ const PaymentForm = () => {
                   name="first-name"
                   autoComplete="given-name"
                   className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                  required
                 />
               </div>
             </div>
@@ -120,6 +122,7 @@ const PaymentForm = () => {
                   name="last-name"
                   autoComplete="family-name"
                   className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                  required
                 />
               </div>
             </div>
@@ -137,6 +140,7 @@ const PaymentForm = () => {
                   name="company"
                   id="company"
                   className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                  required
                 />
               </div>
             </div>
@@ -155,6 +159,7 @@ const PaymentForm = () => {
                   id="address"
                   autoComplete="street-address"
                   className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                  required
                 />
               </div>
             </div>
@@ -172,6 +177,7 @@ const PaymentForm = () => {
                   name="apartment"
                   id="apartment"
                   className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                  required
                 />
               </div>
             </div>
@@ -190,6 +196,7 @@ const PaymentForm = () => {
                   id="city"
                   autoComplete="address-level2"
                   className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                  required
                 />
               </div>
             </div>
@@ -207,10 +214,11 @@ const PaymentForm = () => {
                   name="country"
                   autoComplete="country-name"
                   className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                  required
                 >
+                  <option>United Kingdom</option>
                   <option>United States</option>
                   <option>Canada</option>
-                  <option>Mexico</option>
                 </select>
               </div>
             </div>
@@ -229,6 +237,7 @@ const PaymentForm = () => {
                   id="region"
                   autoComplete="address-level1"
                   className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                  required
                 />
               </div>
             </div>
@@ -247,6 +256,7 @@ const PaymentForm = () => {
                   id="postal-code"
                   autoComplete="postal-code"
                   className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                  required
                 />
               </div>
             </div>
@@ -265,6 +275,7 @@ const PaymentForm = () => {
                   id="phone"
                   autoComplete="tel"
                   className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                  required
                 />
               </div>
             </div>
@@ -275,6 +286,7 @@ const PaymentForm = () => {
           <RadioGroup
             value={selectedDeliveryMethod}
             onChange={setSelectedDeliveryMethod}
+            name="delivery-method"
           >
             <RadioGroup.Label className="text-lg font-medium text-gray-900">
               Delivery method
@@ -411,6 +423,7 @@ const PaymentForm = () => {
                   name="name-on-card"
                   autoComplete="cc-name"
                   className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                  required
                 />
               </div>
             </div>
@@ -468,7 +481,11 @@ const PaymentForm = () => {
             {cartItems.map((product) => (
               <li key={product.id} className="flex px-4 py-6 sm:px-6">
                 <div className="flex-shrink-0">
-                  <img src={product.imageUrl} className="w-20 rounded-md" />
+                  <img
+                    src={product.imageUrl}
+                    alt=""
+                    className="w-20 rounded-md"
+                  />
                 </div>
 
                 <div className="ml-6 flex flex-1 flex-col">
