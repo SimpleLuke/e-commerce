@@ -514,6 +514,14 @@ const PaymentForm = () => {
               </div>
             </div>
           </div>
+          <div>
+            <p className="text-red-700">
+              To simulate a successful payment, use a test card:
+            </p>
+            <p className="text-red-700">Card number: 4242 4242 4242 4242</p>
+            <p className="text-red-700">Exp date: Any future date</p>
+            <p className="text-red-700">CVC: Any 3 digits</p>
+          </div>
         </div>
       </div>
 
