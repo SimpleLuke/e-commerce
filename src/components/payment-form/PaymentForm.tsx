@@ -129,24 +129,6 @@ const PaymentForm = () => {
 
             <div className="sm:col-span-2">
               <label
-                htmlFor="company"
-                className="block text-sm font-medium text-gray-700"
-              >
-                Company
-              </label>
-              <div className="mt-1">
-                <input
-                  type="text"
-                  name="company"
-                  id="company"
-                  className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-                  required
-                />
-              </div>
-            </div>
-
-            <div className="sm:col-span-2">
-              <label
                 htmlFor="address"
                 className="block text-sm font-medium text-gray-700"
               >
