@@ -1,10 +1,13 @@
-import { useState } from "react";
+import { useState, FormEvent } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   CardNumberElement,
   CardCvcElement,
   CardExpiryElement,
+  useStripe,
+  useElements,
 } from "@stripe/react-stripe-js";
+import { StripeCardNumberElement } from "@stripe/stripe-js";
 import { inputStyle } from "./payment-style";
 
 import {
@@ -26,6 +29,7 @@ import {
   PlusIcon,
   MinusIcon,
 } from "@heroicons/react/20/solid";
+import { selectCurrentUser } from "../../store/user/user.selector";
 const deliveryMethods = [
   {
     id: 1,
@@ -40,10 +44,22 @@ const paymentMethods = [{ id: "credit-card", title: "Credit card" }];
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(" ");
 }
+
+const ifValidCardElement = (
+  card: StripeCardNumberElement | null
+): card is StripeCardNumberElement => card !== null;
+
 const PaymentForm = () => {
+  const stripe = useStripe();
+  const elements = useElements();
   const dispatch = useDispatch();
+  const [selectedDeliveryMethod, setSelectedDeliveryMethod] = useState(
+    deliveryMethods[0]
+  );
   const cartItems = useSelector(selectCartItems);
   const cartTotal = useSelector(selectCartTotal);
+  const currentUser = useSelector(selectCurrentUser);
+  const [isProcessingPayment, setIsProcessingPayment] = useState(false);
 
   const clearItemHandler = (cartItem: CartItem) =>
     dispatch(clearItemFromCart(cartItems, cartItem));
@@ -52,11 +68,54 @@ const PaymentForm = () => {
   const removeItemHandler = (cartItem: CartItem) =>
     dispatch(removeItemFromCart(cartItems, cartItem));
 
-  const [selectedDeliveryMethod, setSelectedDeliveryMethod] = useState(
-    deliveryMethods[0]
-  );
+  const paymentHandler = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    if (!stripe || !elements) {
+      return;
+    }
+    setIsProcessingPayment(true);
+
+    const response = await fetch("/.netlify/functions/create-payment-intent", {
+      method: "post",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ amount: cartTotal * 100 }),
+    }).then((res) => res.json());
+
+    const {
+      paymentIntent: { client_secret },
+    } = response;
+
+    const cardDetails = elements.getElement(CardNumberElement);
+
+    if (!ifValidCardElement(cardDetails)) return;
+
+    const paymentResult = await stripe.confirmCardPayment(client_secret, {
+      payment_method: {
+        card: cardDetails,
+        billing_details: {
+          name: currentUser ? currentUser.displayName : "Guest",
+        },
+      },
+    });
+
+    setIsProcessingPayment(false);
+
+    if (paymentResult.error) {
+      alert(paymentResult.error);
+    } else {
+      if (paymentResult.paymentIntent.status === "succeeded") {
+        alert("Payment Successful");
+      }
+    }
+  };
+
   return (
-    <form className="lg:grid lg:grid-cols-2 lg:gap-x-12 xl:gap-x-16">
+    <form
+      onSubmit={paymentHandler}
+      className="lg:grid lg:grid-cols-2 lg:gap-x-12 xl:gap-x-16"
+    >
       <div>
         <div>
           <h2 className="text-lg font-medium text-gray-900">
@@ -532,9 +591,14 @@ const PaymentForm = () => {
           <div className="border-t border-gray-200 px-4 py-6 sm:px-6">
             <button
               type="submit"
+              disabled={isProcessingPayment}
               className="w-full rounded-md border border-transparent bg-indigo-600 px-4 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-50"
             >
-              Confirm order
+              {isProcessingPayment ? (
+                <div className="spinnerContainer-sm"></div>
+              ) : (
+                "Confirm order"
+              )}
             </button>
           </div>
         </div>
