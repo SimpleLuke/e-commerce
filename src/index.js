@@ -4,6 +4,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
 import { store, persistor } from "./store/store";
+import { Elements } from "@stripe/react-stripe-js";
 
 import Root from "./routes/root/Root";
 import App from "./App";
@@ -16,6 +17,7 @@ import Category from "./components/category/Category";
 
 import reportWebVitals from "./reportWebVitals";
 import "./index.css";
+import { stripePromise } from "./utils/stripe/stripe.ultils";
 
 const router = createBrowserRouter([
   {
@@ -56,7 +58,9 @@ root.render(
   <React.StrictMode>
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
-        <RouterProvider router={router} />
+        <Elements stripe={stripePromise}>
+          <RouterProvider router={router} />
+        </Elements>
       </PersistGate>
     </Provider>
   </React.StrictMode>
