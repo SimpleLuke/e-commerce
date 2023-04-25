@@ -58,9 +58,11 @@ They can always add or remove items during checkout.
 - React
 - React Router
 - Redux
+- Redux Saga
+- Stripe
 - Firebase & Firestore
 - Tailwind
-- Cypress
+- CircleCI
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
