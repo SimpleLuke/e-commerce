@@ -52,6 +52,8 @@
     ]
   },
   "devDependencies": {
+    "postcss": "^8.4.23",
+    "autoprefixer": "^10.4.14",
     "@tailwindcss/aspect-ratio": "^0.4.2",
     "@tailwindcss/forms": "^0.5.3",
     "@types/jest": "^29.5.0",
@@ -60,8 +62,6 @@
     "@types/react-dom": "^18.0.11",
     "@types/react-router-dom": "^5.3.3",
     "@types/redux-logger": "^3.0.9",
-    "autoprefixer": "^10.4.14",
-    "postcss": "^8.4.23",
     "tailwindcss": "^3.2.7"
   }
 }
