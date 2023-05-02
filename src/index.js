@@ -16,6 +16,7 @@ import Checkout from "./routes/checkout/Checkout";
 import Category from "./components/category/Category";
 
 import reportWebVitals from "./reportWebVitals";
+import "./index.scss";
 import "./index.css";
 import { stripePromise } from "./utils/stripe/stripe.ultils";
 
