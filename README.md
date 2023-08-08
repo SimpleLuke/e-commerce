@@ -29,7 +29,6 @@
         <li><a href="#prerequisites">Prerequisites</a></li>
         <li><a href="#installation">Installation</a></li>
         <li><a href="#start">Start</a></li>
-        <li><a href="#test">Test</a></li>
       </ul>
     </li>
     <li><a href="#usage">Usage</a></li>
@@ -97,26 +96,6 @@ They can always add or remove items during checkout.
    ```
 
 2. Browse to [http://localhost:3000](http://localhost:3000)
-
-### Test
-
-- Run all frontend tests
-
-  ```
-  npm test
-  ```
-
-- Run frontend component tests
-
-  ```
-  npm test:unit
-  ```
-
-- Run frontend end-to-end tests
-
-  ```
-  npm test:feature
-  ```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
