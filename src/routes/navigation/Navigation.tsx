@@ -44,12 +44,12 @@ const Navigation = () => {
                   >
                     <img
                       className="block h-8 w-auto lg:hidden"
-                      src="https://tailwindui.com/img/logos/mark.svg?color=black"
+                      src="https://tailwindui.com/plus/img/logos/mark.svg?color=indigo&shade=600"
                       alt="Clothing Company"
                     />
                     <img
                       className="hidden h-8 w-auto lg:block"
-                      src="https://tailwindui.com/img/logos/mark.svg?color=black"
+                      src="https://tailwindui.com/plus/img/logos/mark.svg?color=indigo&shade=600"
                       alt="Clothing Company"
                     />
                   </Link>
